@@ -1,22 +1,21 @@
-import { Wrapper, CharacterListItem } from "./CharactersList.style";
-import { useRouter } from "next/router";
+import { Wrapper } from "./CharactersList.style";
+import CharactersListItem from "src/components/molecules/CharacterListItem/CharacterListItem";
+import { useSelector } from "react-redux";
 
 const CharactersList = ({ characters = [] }) => {
-  console.log("characters", characters);
-  const router = useRouter();
+  const wishlist = useSelector((state) => state.wishlist);
 
+  console.log("wishlist parent", wishlist);
   return (
     <Wrapper>
-      {characters.map(({ id, name, homeworld, filmConnection }) => (
-        <CharacterListItem
+      {characters.map(({ id, name, homeworld }) => (
+        <CharactersListItem
           key={id}
-          onClick={() => {
-            router.push(`/characters/character/${id}`);
-          }}
-        >
-          <h3>{name}</h3>
-          <p>{homeworld?.name || ""}</p>
-        </CharacterListItem>
+          id={id}
+          name={name}
+          homeworld={homeworld}
+          wishlist={wishlist}
+        />
       ))}
     </Wrapper>
   );

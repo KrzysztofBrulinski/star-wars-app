@@ -19,4 +19,8 @@ body {
 a, button {
     font-family: 'Montserrat', sans-serif;
 }
+
+h1, h2, h3, p{
+    margin: 0;
+}
 `;

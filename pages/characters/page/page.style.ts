@@ -7,10 +7,3 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-
-export const CharacterListItem = styled.section`
-  width: 50%;
-  background-color: ${({ theme }) => theme.colors.darkPurple};
-  margin-top: 20px;
-  cursor: pointer;
-`;

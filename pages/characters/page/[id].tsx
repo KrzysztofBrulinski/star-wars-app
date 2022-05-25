@@ -1,39 +1,19 @@
-import React from "react";
+import CharactersList from "src/components/organisms/CharactersList/CharactersList";
+import Pagination from "src/components/molecules/Pagination/Pagination";
+import { Wrapper } from "./page.style";
 import { gql } from "@apollo/client";
 import { client } from "apollo/client";
 import { chunk } from "helpers/arrays";
-import { useRouter } from "next/router";
-import CharactersList from "src/components/organisms/CharactersList/CharactersList";
 
-const itemsPerPage = 4;
+const itemsPerPage = 8;
 
 const Characters = ({ data }) => {
-  const router = useRouter();
-  const currentPage = Number.parseInt(router.query.id);
-
   const { characters, lastPage } = data || {};
   return (
-    <>
+    <Wrapper>
       <CharactersList characters={characters} />
-      <button
-        disabled={currentPage === 1}
-        onClick={() => {
-          router.push({
-            query: { id: currentPage - 1 },
-          });
-        }}
-      >
-        Previous page
-      </button>
-      <button
-        disabled={currentPage === lastPage}
-        onClick={() => {
-          router.push({ query: { id: currentPage + 1 } });
-        }}
-      >
-        Next page
-      </button>
-    </>
+      <Pagination lastPage={lastPage} />
+    </Wrapper>
   );
 };
 
@@ -72,11 +52,6 @@ export const getStaticProps = async (context) => {
         people {
           id
           name
-          filmConnection {
-            films {
-              title
-            }
-          }
           homeworld {
             name
           }

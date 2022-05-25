@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Header, Nav, StyledLink } from "./Navigation.style";
 
 const NavLinks: { name: string; href: string }[] = [
-  { name: "Characters list", href: "/characters/1" },
-  { name: "Favorite ist", href: "/favorite" },
+  { name: "Characters list", href: "/characters/page/1" },
+  { name: "Favorite list", href: "/favorite" },
   { name: "Contact form", href: "/form" },
 ];
 

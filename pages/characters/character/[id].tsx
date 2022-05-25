@@ -1,16 +1,26 @@
-import React from "react";
 import { gql } from "@apollo/client";
 import { client } from "apollo/client";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Character = ({ data }) => {
-  const { name, homeworld } = data.person;
+  console.log(data);
+  const { name = "", homeworld = "" } = data?.person || {};
   return (
-    <ul>
-      {name ? <li>Name: {name}</li> : null}
-      {homeworld?.planetName ? (
-        <li>Planet name: {homeworld.planetName}</li>
-      ) : null}
-    </ul>
+    <Wrapper>
+      <ul>
+        {name ? <li>Name: {name}</li> : null}
+        {homeworld?.planetName ? (
+          <li>Planet name: {homeworld.planetName}</li>
+        ) : null}
+      </ul>
+    </Wrapper>
   );
 };
 
