@@ -1,0 +1,38 @@
+{
+  "name": "next-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.6.4",
+    "graphql": "^16.5.0",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "styled-components": "^5.3.5"
+  },
+  "prettier": {
+    "prettier.requireConfig": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontSize": 16,
+    "editor.tabSize": 2,
+    "prettier.useEditorConfig": false,
+    "prettier.printWidth": 80,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.formatOnSave": true
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.34",
+    "@types/react": "^18.0.9",
+    "typescript": "^4.6.4"
+  }
+}
