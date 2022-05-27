@@ -17,6 +17,8 @@ export const StyledButton = styled.button`
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   border-radius: 50px;
   margin: 0 15px;
+  color: ${({ theme }) => theme.colors.white};
+  opacity: ${({ disabled }) => (disabled ? "0.5" : 1)};
 
   &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.lightPurple};
@@ -26,4 +28,5 @@ export const StyledButton = styled.button`
 export const StyledParagraph = styled.p`
   cursor: default;
   font-weight: bold;
+  color: ${({ theme }) => theme.colors.black};
 `;

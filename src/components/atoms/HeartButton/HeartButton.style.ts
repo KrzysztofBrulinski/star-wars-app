@@ -16,7 +16,7 @@ export const StyledHeartButton = styled.button`
     height: 125px;
     border-radius: 40px 40px 0 0;
     background-color: ${({ theme, isActive }) =>
-      isActive ? theme.colors.red : theme.colors.black};
+      isActive ? theme.colors.red : theme.colors.white};
     transition: ${({ theme }) => theme.standardTransition};
     cursor: pointer;
   }

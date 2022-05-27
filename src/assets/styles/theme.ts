@@ -8,7 +8,7 @@ export const theme = {
     lightPurple: "#D458E6",
     darkPurple: "#850099",
     yellow: "#E6BD17",
-    red: "#a00d0d",
+    red: "#ff0000",
   },
   fontSize: {
     xl: "24px",
@@ -17,4 +17,8 @@ export const theme = {
     s: "11px",
   },
   standardTransition: "300ms all ease-in-out",
+  grid: {
+    templateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+    gap: "40px",
+  },
 };

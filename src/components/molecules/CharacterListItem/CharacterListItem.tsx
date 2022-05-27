@@ -1,14 +1,10 @@
-import { Wrapper, CharacterTile } from "./CharacterListItem.style";
+import { Wrapper } from "./CharacterListItem.style";
+import { CharacterTile } from "src/assets/styles/CharacterTail.style";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButton.style";
+import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButton/HeartButton.style";
 
-const CharactersListItem = ({
-  id = "",
-  name = "",
-  homeworld = "",
-  wishlist = [],
-}) => {
+const CharactersListItem = ({ id, name, homeworld, wishlist }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 

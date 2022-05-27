@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  display: flex;
   width: 100%;
-  height: 60px;
   background-color: ${({ theme }) => theme.colors.lightPurple};
 `;
 
 export const Nav = styled.nav`
   width: 100%;
-  height: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -14,6 +14,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     background-color: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.white};
 }
 
 a, button {

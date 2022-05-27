@@ -2,10 +2,10 @@ import { Wrapper } from "./CharactersList.style";
 import CharactersListItem from "src/components/molecules/CharacterListItem/CharacterListItem";
 import { useSelector } from "react-redux";
 
-const CharactersList = ({ characters = [] }) => {
-  const wishlist = useSelector((state) => state.wishlist);
-
-  console.log("wishlist parent", wishlist);
+const CharactersList = ({ characters }) => {
+  const wishlist = useSelector(
+    (state: { wishlist: Array<Object> }) => state.wishlist
+  );
   return (
     <Wrapper>
       {characters.map(({ id, name, homeworld }) => (

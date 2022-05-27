@@ -10,7 +10,6 @@ const Wrapper = styled.div`
 `;
 
 const Character = ({ data }) => {
-  console.log(data);
   const { name = "", homeworld = "" } = data?.person || {};
   return (
     <Wrapper>
