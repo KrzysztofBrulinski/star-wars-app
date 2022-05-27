@@ -6,6 +6,8 @@ export const StyledHeartButton = styled.button`
   height: 130px;
   background-color: transparent;
   border: none;
+  transform: ${({ isSmall }) => (isSmall ? " scale(0.2)" : "")};
+  cursor: pointer;
 
   &:before,
   &:after {

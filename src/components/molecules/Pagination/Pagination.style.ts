@@ -1,3 +1,4 @@
+import { Button } from "src/components/atoms/Button/Button";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -6,27 +7,19 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
-`;
-
-export const StyledButton = styled.button`
-  border: none;
   background-color: ${({ theme }) => theme.colors.darkPurple};
-  width: 35px;
-  height: 35px;
-  transition: ${({ theme }) => theme.standardTransition};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  border-radius: 50px;
-  margin: 0 15px;
-  color: ${({ theme }) => theme.colors.white};
-  opacity: ${({ disabled }) => (disabled ? "0.5" : 1)};
+  border-radius: ${({ theme }) => theme.borderRadius};
 
-  &:hover:not(:disabled) {
-    background-color: ${({ theme }) => theme.colors.lightPurple};
+  ${Button} {
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    margin: 0 15px;
   }
 `;
 
 export const StyledParagraph = styled.p`
   cursor: default;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
 `;

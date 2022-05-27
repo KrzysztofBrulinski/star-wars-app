@@ -1,23 +1,16 @@
 import { createStore } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { rootReducer } from "./reducers/reducers";
 
-const rootReducer = (state = { wishlist: {} }, action) => {
-  if (action.type === "ADD_TO_WISHLIST") {
-    return {
-      wishlist: { ...state.wishlist, ...action.value },
-    };
-  }
-
-  if (action.type === "REMOVE_FROM_WISHLIST") {
-    const wishlist = { ...state.wishlist };
-
-    delete wishlist[action.id];
-    return {
-      wishlist,
-    };
-  }
-
-  return state;
+const persistConfig = {
+  key: "root",
+  storage,
 };
 
-const store = createStore(rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
+export { persistor };
 export default store;

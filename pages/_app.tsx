@@ -4,21 +4,27 @@ import { theme } from "src/assets/styles/theme";
 import { GlobalStyle } from "src/assets/styles/GlobalStyles";
 import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
-import store from "src/store/index";
-import { client } from "apollo/client";
+import store, { persistor } from "src/store/index";
+import { PersistGate } from "redux-persist/integration/react";
+import { client } from "src/apollo/client";
 import { RootWrapper } from "src/assets/styles/GlobalStyledComponent/RootWrapper.style";
+import Galaxy from "src/components/atoms/Galaxy/Galaxy";
 
 export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Provider store={store}>
-        <ApolloProvider client={client}>
-          <Navigation />
-          <RootWrapper>
-            <Component {...pageProps} />
-          </RootWrapper>
-        </ApolloProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ApolloProvider client={client}>
+            <Galaxy>
+              <Navigation />
+              <RootWrapper>
+                <Component {...pageProps} />
+              </RootWrapper>
+            </Galaxy>
+          </ApolloProvider>
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   );

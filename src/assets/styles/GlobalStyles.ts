@@ -13,7 +13,7 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    background-color: ${({ theme }) => theme.colors.yellow};
+    background-color: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};
 }
 

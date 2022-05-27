@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 
   ${StyledHeartButton} {
     position: absolute;
-    transform: scale(0.28);
-    bottom: -20px;
+    top: -20px;
+    right: -40px;
   }
 `;

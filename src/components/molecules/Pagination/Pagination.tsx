@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { Wrapper, StyledButton, StyledParagraph } from "./Pagination.style";
+import { Wrapper, StyledParagraph } from "./Pagination.style";
+import { Button } from "src/components/atoms/Button/Button";
 
 const Pagination = ({ lastPage }) => {
   const router = useRouter();
@@ -7,7 +8,7 @@ const Pagination = ({ lastPage }) => {
 
   return (
     <Wrapper>
-      <StyledButton
+      <Button
         disabled={currentPage === 1}
         onClick={() => {
           router.push({
@@ -16,16 +17,16 @@ const Pagination = ({ lastPage }) => {
         }}
       >
         {"⬅"}
-      </StyledButton>
+      </Button>
       <StyledParagraph>{currentPage}</StyledParagraph>
-      <StyledButton
-        disabled={currentPage === lastPage}
+      <Button
+        disabled={!!!lastPage || currentPage === lastPage}
         onClick={() => {
           router.push({ query: { id: currentPage + 1 } });
         }}
       >
         {"⮕"}
-      </StyledButton>
+      </Button>
     </Wrapper>
   );
 };

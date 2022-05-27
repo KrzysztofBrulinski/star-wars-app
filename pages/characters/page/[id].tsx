@@ -3,10 +3,11 @@ import Pagination from "src/components/molecules/Pagination/Pagination";
 import Filters from "src/components/organisms/Filters/Filters";
 import SearchBar from "src/components/molecules/SearchBar/SearchBar";
 import { Wrapper, Listing } from "./page.style";
-import { gql } from "@apollo/client";
-import { client } from "apollo/client";
-import { chunk, sortFunc } from "helpers/arrays";
+import { client } from "src/apollo/client";
+import { chunk, sortFunc } from "src/helpers/arrays";
 import { useEffect, useState } from "react";
+import { fetchGraphQLData } from "src/apollo/utils";
+import { ALL_CHARACTERS, TOTAL_COUNT } from "src/GraphQL/queries";
 
 const itemsPerPage = 16;
 
@@ -63,16 +64,8 @@ const Characters = ({ data }) => {
 };
 
 export const getStaticPaths = async () => {
-  const ALL_CHARACTERS = gql`
-    query AllCharacters {
-      allCharacters: allPeople {
-        totalCount
-      }
-    }
-  `;
-
   const res = await client.query({
-    query: ALL_CHARACTERS,
+    query: TOTAL_COUNT,
   });
 
   const allPagesLength = Math.ceil(
@@ -90,30 +83,13 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
+  const data = await fetchGraphQLData(ALL_CHARACTERS);
 
-  const ALL_CHARACTERS = gql`
-    query AllCharacters {
-      allCharacters: allPeople {
-        people {
-          id
-          name
-          homeworld {
-            name
-          }
-        }
-      }
-    }
-  `;
-
-  const res = await client.query({
-    query: ALL_CHARACTERS,
-  });
-
-  const allPagesData = chunk(res.data.allCharacters.people, itemsPerPage);
-  const charactersForPage = allPagesData[id - 1];
+  const allPagesData = chunk(data.allCharacters?.people, itemsPerPage);
+  const charactersForPage = allPagesData?.[id - 1] || [];
 
   const planetFilter = [
-    ...new Set(charactersForPage.map(({ homeworld }) => homeworld.name)),
+    ...new Set(charactersForPage?.map(({ homeworld }) => homeworld.name)),
   ]
     .sort(sortFunc)
     .map((planetName) => ({

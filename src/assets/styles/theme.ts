@@ -9,6 +9,7 @@ export const theme = {
     darkPurple: "#850099",
     yellow: "#E6BD17",
     red: "#ff0000",
+    darkRed: "#cc0000",
   },
   fontSize: {
     xl: "24px",
@@ -21,4 +22,5 @@ export const theme = {
     templateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
     gap: "40px",
   },
+  borderRadius: "10px",
 };

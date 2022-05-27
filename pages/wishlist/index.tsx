@@ -1,33 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
-import { CharacterTile } from "src/assets/styles/CharacterTail.style";
-import { Wrapper } from "./wishlist.style";
+import { CharacterWrapper } from "src/assets/styles/CharacterWrapper.style";
+import { Wrapper, CharacterCard, StyledH2 } from "./wishlist.style";
 import { Button } from "src/components/atoms/Button/Button";
+import { useRouter } from "next/router";
 
 const Wishlist = () => {
-  const wishlist = useSelector(({ wishlist }) => wishlist);
+  const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const allCharacters = Object.values(wishlist);
 
   return (
-    <Wrapper>
-      {allCharacters.length ? (
-        allCharacters.map(({ name, id }) => (
-          <CharacterTile key={id}>
-            <h2>{name}</h2>
-            <Button
-              onClick={() => {
-                dispatch({ type: "REMOVE_FROM_WISHLIST", id });
-              }}
-            >
-              Remove me
-            </Button>
-          </CharacterTile>
-        ))
-      ) : (
-        <p>List is empty!</p>
-      )}
-    </Wrapper>
+    <>
+      <StyledH2>
+        {!!!allCharacters.length
+          ? "List is empty!"
+          : "Your favorite characters:"}
+      </StyledH2>
+      <Wrapper>
+        {allCharacters.length
+          ? allCharacters.map(({ name, id }) => (
+              <CharacterCard key={id}>
+                <CharacterWrapper
+                  as="button"
+                  onClick={() => {
+                    router.push(`/characters/character/${id}`);
+                  }}
+                >
+                  <h2>{name}</h2>
+                </CharacterWrapper>
+                <Button
+                  onClick={() => {
+                    dispatch({ type: "REMOVE_FROM_WISHLIST", value: id });
+                  }}
+                >
+                  Remove
+                </Button>
+              </CharacterCard>
+            ))
+          : null}
+      </Wrapper>
+    </>
   );
 };
 

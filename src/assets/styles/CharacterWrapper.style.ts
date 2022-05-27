@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const CharacterTile = styled.button`
+export const CharacterWrapper = styled.div`
   width: 100%;
   height: 240px;
   background-color: ${({ theme }) => theme.colors.darkPurple};
   color: ${({ theme }) => theme.colors.white};
-  cursor: pointer;
-  border-radius: 10px;
+  cursor: ${({ as }) => (as === "button" ? "pointer" : "default")};
+  border-radius: ${({ theme }) => theme.borderRadius};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,9 +14,9 @@ export const CharacterTile = styled.button`
   transition: ${({ theme }) => theme.standardTransition};
   border: none;
   max-width: 400px;
-  position: relative;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.lightPurple};
+    background-color: ${({ theme, as }) =>
+      as === "button" ? theme.colors.lightPurple : theme.colors.darkPurple};
   }
 `;

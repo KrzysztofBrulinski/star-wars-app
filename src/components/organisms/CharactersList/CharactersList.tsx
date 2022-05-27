@@ -7,17 +7,20 @@ const CharactersList = ({ characters }) => {
     (state: { wishlist: Array<Object> }) => state.wishlist
   );
   return (
-    <Wrapper>
-      {characters.map(({ id, name, homeworld }) => (
-        <CharactersListItem
-          key={id}
-          id={id}
-          name={name}
-          homeworld={homeworld}
-          wishlist={wishlist}
-        />
-      ))}
-    </Wrapper>
+    <>
+      {!!!characters.length ? <h2>No characters found...</h2> : null}
+      <Wrapper>
+        {characters.map(({ id, name, homeworld }) => (
+          <CharactersListItem
+            key={id}
+            id={id}
+            name={name}
+            homeworld={homeworld}
+            wishlist={wishlist}
+          />
+        ))}
+      </Wrapper>
+    </>
   );
 };
 

@@ -39,6 +39,8 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>Star Wars App</title>
+          <link rel="icon" type="image/png" href="/static/favicon.png" />
           <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
             rel="stylesheet"

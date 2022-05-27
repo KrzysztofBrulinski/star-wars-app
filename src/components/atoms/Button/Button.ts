@@ -10,10 +10,11 @@ export const Button = styled.button`
   font-weight: bold;
   font-size: ${({ theme, isBig }) =>
     isBig ? theme.fontSize.l : theme.fontSize.m};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  opacity: ${({ disabled }) => (disabled ? "0.5" : 1)};
   transition: ${({ theme }) => theme.standardTransition};
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.white};
   }
 `;

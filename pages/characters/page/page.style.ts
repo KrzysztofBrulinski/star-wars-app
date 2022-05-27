@@ -7,12 +7,6 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-
-  ${Input} {
-    width: 300px;
-    font-size: ${({ theme }) => theme.fontSize.l};
-    margin: 20px 10px 40px 10px;
-  }
 `;
 export const Listing = styled.div`
   display: grid;

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.darkPurple};
   padding: 30px 20px;
   height: 100%;
-  border-radius: 10px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -18,7 +18,12 @@ export const Filter = styled.div`
   font-size: ${({ theme }) => theme.fontSize.l};
   background-color: ${({ theme }) => theme.colors.black};
   padding: 10px;
-  border-radius: 10px;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  width: 100%;
+
+  h3 {
+    margin-bottom: 15px;
+  }
 `;
 
 export const Option = styled.div`

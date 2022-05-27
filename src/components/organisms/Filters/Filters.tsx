@@ -5,8 +5,9 @@ import { Button } from "src/components/atoms/Button/Button";
 const Filters = ({ filter, setFilter }) => {
   return (
     <Wrapper>
-      <h3>FILTERS</h3>
+      <h2>FILTERS</h2>
       <Filter>
+        <h3>Planets</h3>
         {filter.map(({ planetName, isChecked }) => (
           <Option key={planetName}>
             <label htmlFor={planetName}>{planetName}</label>
@@ -16,10 +17,14 @@ const Filters = ({ filter, setFilter }) => {
               checked={isChecked}
               onChange={(e) => {
                 const filterCopy = [...filter];
-                filterCopy.find(
+                const appliedFilter = filterCopy.find(
                   (planet) => planet.planetName === planetName
-                ).isChecked = e.target.checked;
-                setFilter(filterCopy);
+                );
+
+                if (appliedFilter) {
+                  appliedFilter.isChecked = e.target.checked;
+                  setFilter(filterCopy);
+                }
               }}
             />
           </Option>
