@@ -11,6 +11,7 @@ export const theme = {
     lightYellow: "#ffc76e",
     red: "#ff0000",
     darkRed: "#cc0000",
+    green: "#11ca00",
   },
   fontSize: {
     xxl: "34px",

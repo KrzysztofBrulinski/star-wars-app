@@ -5,7 +5,7 @@ import { Header, Nav, StyledLink } from "./Navigation.style";
 const NavLinks: { name: string; href: string }[] = [
   { name: "Characters list", href: "/characters/page/1" },
   { name: "Favorite list", href: "/wishlist" },
-  { name: "Contact form", href: "/form" },
+  { name: "Contact us", href: "/form" },
 ];
 
 const Navigation: FunctionComponent = () => (

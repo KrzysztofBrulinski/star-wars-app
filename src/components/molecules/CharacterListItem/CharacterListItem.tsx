@@ -1,5 +1,5 @@
 import { Wrapper } from "./CharacterListItem.style";
-import { CharacterWrapper } from "src/assets/styles/CharacterWrapper.style";
+import { CharacterWrapper } from "src/assets/styles/GlobalStyledComponent/CharacterWrapper.style";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButton/HeartButton.style";

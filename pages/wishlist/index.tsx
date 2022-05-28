@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { CharacterWrapper } from "src/assets/styles/CharacterWrapper.style";
+import { CharacterWrapper } from "src/assets/styles/GlobalStyledComponent/CharacterWrapper.style";
 import { Wrapper, CharacterCard, StyledH2 } from "./wishlist.style";
 import { Button } from "src/components/atoms/Button/Button";
 import { useRouter } from "next/router";

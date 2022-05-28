@@ -6,6 +6,7 @@ import Modal from "src/components/molecules/Modal/Modal";
 import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButton/HeartButton.style";
 import { fetchGraphQLData } from "src/apollo/utils";
 import { PLANET_DATA, CHARACTER, ALL_CHARACTERS_ID } from "src/GraphQL/queries";
+import { CharacterWrapper } from "src/assets/styles/GlobalStyledComponent/CharacterWrapper.style";
 
 const Character = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,7 @@ const Character = ({ data }) => {
         type: "SET_ALERT",
         value: {
           text: error,
-          color: "red",
+          color: "darkRed",
           id: new Date().getTime() + "",
         },
       });
@@ -58,7 +59,7 @@ const Character = ({ data }) => {
   ];
 
   return (
-    <>
+    <Wrapper>
       <Modal
         headerText={"Planet info"}
         showModal={showModal}
@@ -75,7 +76,7 @@ const Character = ({ data }) => {
         ) : null}
       </Modal>
 
-      <Wrapper>
+      <CharacterWrapper>
         {!error ? (
           <HeartButton
             isSmall
@@ -101,7 +102,7 @@ const Character = ({ data }) => {
                 type: "SET_ALERT",
                 value: {
                   text: data.error,
-                  color: "red",
+                  color: "darkRed",
                   id: new Date().getTime() + "",
                 },
               });
@@ -112,8 +113,8 @@ const Character = ({ data }) => {
         >
           About planet
         </Button>
-      </Wrapper>
-    </>
+      </CharacterWrapper>
+    </Wrapper>
   );
 };
 

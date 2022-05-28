@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 export const AlertWrapper = styled.section`
   width: 100%;
-  height: 80px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@ export const AlertWrapper = styled.section`
     height: 100%;
     background-color: ${({ theme, color }) =>
       theme.colors?.[color] ? theme.colors[color] : theme.colors.yellow};
-    opacity: 0.5;
+    opacity: 0.7;
   }
 `;
 
@@ -36,5 +36,5 @@ export const AlertText = styled.section`
   justify-content: center;
   align-items: center;
   z-index: 1;
-  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-size: ${({ theme }) => theme.fontSize.l};
 `;

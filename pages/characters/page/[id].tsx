@@ -24,7 +24,7 @@ const Characters = ({ data }) => {
     if (error) {
       dispatch({
         type: "SET_ALERT",
-        value: { text: error, color: "red", id: new Date().getTime() },
+        value: { text: error, color: "darkRed", id: new Date().getTime() },
       });
     }
   }, []);

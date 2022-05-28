@@ -17,7 +17,7 @@ body {
     color: ${({ theme }) => theme.colors.white};
 }
 
-a, button {
+a, button, textarea {
     font-family: 'Montserrat', sans-serif;
 }
 
