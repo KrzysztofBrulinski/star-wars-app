@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
   height: 340px;
-  background-color: ${({ theme }) => theme.colors.darkPurple};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.borderRadius};
   text-align: left;
   display: flex;
@@ -14,6 +14,8 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  font-size: ${({ theme }) => theme.fontSize.l};
+  border: 2px solid ${({ theme }) => theme.colors.white};
 
   ${StyledHeartButton} {
     position: absolute;
@@ -25,6 +27,7 @@ export const Wrapper = styled.div`
 export const StyledList = styled.ul`
   padding: 0;
   margin-bottom: 40px;
+  font-size: ${({ theme }) => theme.fontSize.l};
 
   li {
     display: block;

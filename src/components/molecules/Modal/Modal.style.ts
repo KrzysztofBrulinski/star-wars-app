@@ -11,6 +11,7 @@ export const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   z-index: 1;
+  color: ${({ theme }) => theme.colors.black};
 
   &::before {
     content: "";
@@ -26,25 +27,35 @@ export const ModalWindow = styled.div`
   width: 100%;
   max-width: 800px;
   height: 500px;
-  background-color: ${({ theme }) => theme.colors.darkPurple};
+  background-color: ${({ theme }) => theme.colors.yellow};
   border-radius: ${({ theme }) => theme.borderRadius};
   overflow: hidden;
   z-index: 2;
+  border: 2px solid ${({ theme }) => theme.colors.white};
 `;
 
 export const Header = styled.div`
   width: 100%;
   height: 60px;
-  background-color: ${({ theme }) => theme.colors.darkRed};
+  background-color: ${({ theme }) => theme.colors.black};
   display: flex;
   justify-content: flex-end;
   position: relative;
+  color: ${({ theme }) => theme.colors.white};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.white};
 
   ${Button} {
     position: absolute;
     right: 0%;
     height: 100%;
     border-radius: 0;
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.grey};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.white};
+      background-color: transparent;
+    }
   }
 `;
 
@@ -52,6 +63,7 @@ export const Content = styled.div`
   width: 100%;
   // minus header height
   height: calc(100% - 60px);
+  padding: 0 50px;
   display: flex;
   justify-content: center;
   align-items: center;

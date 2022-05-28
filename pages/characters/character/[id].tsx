@@ -1,6 +1,6 @@
 import { Wrapper, StyledList } from "./character.style";
 import { Button } from "src/components/atoms/Button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "src/components/molecules/Modal/Modal";
 import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButton/HeartButton.style";
@@ -12,13 +12,26 @@ const Character = ({ data }) => {
   const [modalData, setModalData] = useState({});
   const { name, id, birthYear, height, mass, eyeColor, hairColor, gender } =
     data?.person || {};
-
+  const error = data.error;
   const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (error) {
+      dispatch({
+        type: "SET_ALERT",
+        value: {
+          text: error,
+          color: "red",
+          id: new Date().getTime() + "",
+        },
+      });
+    }
+  }, []);
+
   const isInWishlist = !!wishlist[id];
   const action = isInWishlist
-    ? { type: "REMOVE_FROM_WISHLIST", value: id }
+    ? { type: "REMOVE_FROM_WISHLIST", id }
     : {
         type: "ADD_TO_WISHLIST",
         value: { [id]: { name, id } },
@@ -63,13 +76,15 @@ const Character = ({ data }) => {
       </Modal>
 
       <Wrapper>
-        <HeartButton
-          isSmall
-          onClick={() => {
-            dispatch(action);
-          }}
-          isActive={isInWishlist}
-        />
+        {!error ? (
+          <HeartButton
+            isSmall
+            onClick={() => {
+              dispatch(action);
+            }}
+            isActive={isInWishlist}
+          />
+        ) : null}
         <StyledList>
           {characterDataSchema.map(({ name, value }) => (
             <li key={name}>
@@ -81,6 +96,17 @@ const Character = ({ data }) => {
           onClick={async () => {
             setShowModal(true);
             const data = await fetchGraphQLData(PLANET_DATA, { id });
+            if (data.error) {
+              dispatch({
+                type: "SET_ALERT",
+                value: {
+                  text: data.error,
+                  color: "red",
+                  id: new Date().getTime() + "",
+                },
+              });
+            }
+
             setModalData(data?.person?.homeworld || {});
           }}
         >

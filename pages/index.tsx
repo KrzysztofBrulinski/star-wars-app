@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: black;
+  img {
+    width: 400px;
+    height: auto;
+    margin-top: 100px;
+  }
 `;
 
 const HomePage = () => {
   return (
     <Wrapper>
-      <div>Main Page</div>
+      <img src="/static/favicon.png" />
     </Wrapper>
   );
 };

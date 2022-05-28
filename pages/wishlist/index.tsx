@@ -20,8 +20,8 @@ const Wishlist = () => {
       </StyledH2>
       <Wrapper>
         {allCharacters.length
-          ? allCharacters.map(({ name, id }) => (
-              <CharacterCard key={id}>
+          ? allCharacters.map(({ name, id }, index) => (
+              <CharacterCard key={id || index}>
                 <CharacterWrapper
                   as="button"
                   onClick={() => {
@@ -32,7 +32,7 @@ const Wishlist = () => {
                 </CharacterWrapper>
                 <Button
                   onClick={() => {
-                    dispatch({ type: "REMOVE_FROM_WISHLIST", value: id });
+                    dispatch({ type: "REMOVE_FROM_WISHLIST", id });
                   }}
                 >
                   Remove

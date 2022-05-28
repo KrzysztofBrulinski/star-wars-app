@@ -7,6 +7,9 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   position: relative;
+  max-width: 330px;
+  width: 100%;
+  margin: 0 auto;
 
   ${StyledHeartButton} {
     position: absolute;

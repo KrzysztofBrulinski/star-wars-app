@@ -9,8 +9,6 @@ export const fetchGraphQLData = async (QUERY, variables = {}) => {
 
     return res.data;
   } catch (e) {
-    console.log(e);
+    return { error: "Error: Cannot load data" };
   }
-
-  return {};
 };

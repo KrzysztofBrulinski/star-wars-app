@@ -11,7 +11,11 @@ const Modal = ({ headerText, showModal, setShowModal, children }) => {
   return (
     <>
       {showModal ? (
-        <Wrapper>
+        <Wrapper
+          onClick={() => {
+            setShowModal(false);
+          }}
+        >
           <ModalWindow>
             <Header>
               {headerText ? <HeaderText>{headerText}</HeaderText> : null}

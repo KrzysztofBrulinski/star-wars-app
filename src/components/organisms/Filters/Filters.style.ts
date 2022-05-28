@@ -2,7 +2,8 @@ import { Input } from "src/components/atoms/Input/Input";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.darkPurple};
+  background-color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.black};
   padding: 30px 20px;
   height: 100%;
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -20,6 +21,7 @@ export const Filter = styled.div`
   padding: 10px;
   border-radius: ${({ theme }) => theme.borderRadius};
   width: 100%;
+  color: ${({ theme }) => theme.colors.white};
 
   h3 {
     margin-bottom: 15px;

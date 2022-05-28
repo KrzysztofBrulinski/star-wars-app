@@ -1,5 +1,5 @@
 export const rootReducer = (
-  state = { wishlist: {}, galaxyBackgroundImage: "" },
+  state = { wishlist: {}, galaxyBackgroundImage: "", alerts: [] },
   action
 ) => {
   if (action.type === "ADD_TO_WISHLIST") {
@@ -11,7 +11,7 @@ export const rootReducer = (
 
   if (action.type === "REMOVE_FROM_WISHLIST") {
     const wishlist = { ...state.wishlist };
-    delete wishlist[action.value];
+    delete wishlist[action.id];
     return {
       ...state,
       wishlist,
@@ -22,5 +22,15 @@ export const rootReducer = (
     return { ...state, galaxyBackgroundImage: action.value };
   }
 
+  if (action.type === "SET_ALERT") {
+    return { ...state, alerts: [...state.alerts, action.value] };
+  }
+
+  if (action.type === "CLEAR_ALERTS") {
+    return {
+      ...state,
+      alerts: [],
+    };
+  }
   return state;
 };

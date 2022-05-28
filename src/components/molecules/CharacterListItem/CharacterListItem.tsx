@@ -10,7 +10,7 @@ const CharactersListItem = ({ id, name, homeworld, wishlist }) => {
 
   const isInWishlist = !!wishlist[id];
   const action = isInWishlist
-    ? { type: "REMOVE_FROM_WISHLIST", value: id }
+    ? { type: "REMOVE_FROM_WISHLIST", id }
     : {
         type: "ADD_TO_WISHLIST",
         value: { [id]: { name, id } },

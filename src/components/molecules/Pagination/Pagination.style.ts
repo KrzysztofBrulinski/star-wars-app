@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.darkPurple};
+  background-color: ${({ theme }) => theme.colors.yellow};
   border-radius: ${({ theme }) => theme.borderRadius};
 
   ${Button} {
@@ -21,5 +21,5 @@ export const Wrapper = styled.div`
 export const StyledParagraph = styled.p`
   cursor: default;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
 `;
