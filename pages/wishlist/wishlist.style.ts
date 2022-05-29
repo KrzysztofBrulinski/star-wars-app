@@ -15,6 +15,7 @@ export const Wrapper = styled.div<Props>`
   width: 100%;
   grid-template-columns: ${({ theme }) => theme.grid.templateColumns};
   gap: ${({ theme }) => theme.grid.gap};
+  padding: 0 40px;
 `;
 
 export const CharacterCard = styled.div<Props>`
