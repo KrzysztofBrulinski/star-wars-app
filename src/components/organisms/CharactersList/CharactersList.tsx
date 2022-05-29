@@ -1,11 +1,18 @@
 import { Wrapper } from "./CharactersList.style";
 import CharactersListItem from "src/components/molecules/CharacterListItem/CharacterListItem";
 import { useSelector } from "react-redux";
+import { StateTypes } from "src/store/reducers/reducers";
 
-const CharactersList = ({ characters }) => {
-  const wishlist = useSelector(
-    (state: { wishlist: Array<Object> }) => state.wishlist
-  );
+type Props = {
+  characters: {
+    id: string;
+    name: string;
+    homeworld: { name: string };
+  }[];
+};
+
+const CharactersList = ({ characters }: Props) => {
+  const wishlist = useSelector((state: StateTypes) => state.wishlist);
   return (
     <>
       {!!!characters.length ? <h2>No characters found...</h2> : null}

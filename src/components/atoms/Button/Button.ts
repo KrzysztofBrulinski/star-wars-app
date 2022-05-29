@@ -1,6 +1,13 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Button = styled.button`
+type Props = {
+  readonly theme: ThemeTypes;
+  readonly isBig?: boolean;
+  readonly disabled?: boolean;
+};
+
+export const Button = styled.button<Props>`
   border: none;
   background-color: ${({ theme }) => theme.colors.grey};
   color: ${({ theme }) => theme.colors.black};

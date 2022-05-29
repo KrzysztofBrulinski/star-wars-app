@@ -3,24 +3,21 @@ import { CharacterWrapper } from "src/assets/styles/GlobalStyledComponent/Charac
 import { Wrapper, CharacterCard, StyledH2 } from "./wishlist.style";
 import { Button } from "src/components/atoms/Button/Button";
 import { useRouter } from "next/router";
+import { StateTypes } from "src/store/reducers/reducers";
 
 const Wishlist = () => {
-  const wishlist = useSelector((state) => state.wishlist);
+  const wishlist = useSelector((state: StateTypes) => state.wishlist);
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const allCharacters = Object.values(wishlist);
 
   return (
     <>
       <StyledH2>
-        {!!!allCharacters.length
-          ? "List is empty!"
-          : "Your favorite characters:"}
+        {!!!wishlist.length ? "List is empty!" : "Your favorite characters:"}
       </StyledH2>
       <Wrapper>
-        {allCharacters.length
-          ? allCharacters.map(({ name, id }, index) => (
+        {wishlist.length
+          ? wishlist.map(({ name, id }, index) => (
               <CharacterCard key={id || index}>
                 <CharacterWrapper
                   as="button"
@@ -32,7 +29,7 @@ const Wishlist = () => {
                 </CharacterWrapper>
                 <Button
                   onClick={() => {
-                    dispatch({ type: "REMOVE_FROM_WISHLIST", id });
+                    dispatch({ type: "REMOVE_FROM_WISHLIST", value: id });
                   }}
                 >
                   Remove

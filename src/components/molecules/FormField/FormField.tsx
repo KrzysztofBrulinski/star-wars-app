@@ -2,6 +2,18 @@ import { Input } from "src/components/atoms/Input/Input";
 import { Label } from "src/components/atoms/Label/Label.style";
 import { Wrapper, Error } from "./FormField.style";
 
+type Props = {
+  value: string;
+  onChange?: (e: any) => void;
+  label: string;
+  name: string;
+  id: string;
+  required: boolean;
+  type?: string;
+  customTag?: string;
+  validation: { errorMessage: string; showError: boolean };
+};
+
 const FormField = ({
   value,
   onChange,
@@ -12,7 +24,7 @@ const FormField = ({
   type = "text",
   customTag = "",
   validation = { errorMessage: "", showError: false },
-}) => {
+}: Props) => {
   return (
     <Wrapper isError={validation.showError}>
       <Label htmlFor={id}>{label}</Label>

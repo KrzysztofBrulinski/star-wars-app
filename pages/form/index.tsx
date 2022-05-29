@@ -4,6 +4,7 @@ import { useForm } from "src/hooks/useForm";
 import { Button } from "src/components/atoms/Button/Button";
 import { Wrapper, Error } from "./form.style";
 import { useDispatch } from "react-redux";
+import { ChangeEvent } from "react";
 
 const polishLetters =
   "AaĄąBbCcĆćDdEeĘęFfGgHhIiJjKkLlŁłMmNnŃńOoÓóPpRrSsŚśTtUuWwYyZzŹźŻż";
@@ -52,7 +53,7 @@ const Form = () => {
     useForm(initialFormState);
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: ChangeEvent<any>) => {
     e.preventDefault();
     const validationState = Object.values(formState.validation);
 

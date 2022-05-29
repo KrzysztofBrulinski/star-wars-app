@@ -1,7 +1,12 @@
 import { Button } from "src/components/atoms/Button/Button";
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.section`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const Wrapper = styled.section<Props>`
   width: 100%;
   height: 100%;
   position: fixed;
@@ -23,7 +28,7 @@ export const Wrapper = styled.section`
   }
 `;
 
-export const ModalWindow = styled.div`
+export const ModalWindow = styled.div<Props>`
   width: 100%;
   max-width: 800px;
   height: 500px;
@@ -34,7 +39,7 @@ export const ModalWindow = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.white};
 `;
 
-export const Header = styled.div`
+export const Header = styled.div<Props>`
   width: 100%;
   height: 60px;
   background-color: ${({ theme }) => theme.colors.black};
@@ -59,7 +64,7 @@ export const Header = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<Props>`
   width: 100%;
   // minus header height
   height: calc(100% - 60px);
@@ -69,7 +74,7 @@ export const Content = styled.div`
   align-items: center;
 `;
 
-export const HeaderText = styled.h2`
+export const HeaderText = styled.h2<Props>`
   width: 100%;
   height: 100%;
   display: flex;

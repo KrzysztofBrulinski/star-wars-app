@@ -3,16 +3,35 @@ import Pagination from "src/components/molecules/Pagination/Pagination";
 import Filters from "src/components/organisms/Filters/Filters";
 import SearchBar from "src/components/molecules/SearchBar/SearchBar";
 import { Wrapper, Listing } from "./page.style";
-import { client } from "src/apollo/client";
 import { chunk, sortFunc } from "src/helpers/arrays";
 import { useEffect, useState } from "react";
 import { fetchGraphQLData } from "src/apollo/utils";
 import { ALL_CHARACTERS, TOTAL_COUNT } from "src/GraphQL/queries";
+import { AllCharactersType, TotalCountTypes } from "src/GraphQL/queries.types";
 import { useDispatch } from "react-redux";
+import { GetStaticProps } from "next";
 
 const itemsPerPage = 16;
 
-const Characters = ({ data }) => {
+type Props = {
+  data: {
+    characters: {
+      id: string;
+      name: string;
+      homeworld: {
+        name: string;
+      };
+    }[];
+    lastPage: number;
+    planetFilter: {
+      planetName: string;
+      isChecked: boolean;
+    }[];
+    error: string;
+  };
+};
+
+const Characters = ({ data }: Props) => {
   const { characters, lastPage, planetFilter, error } = data || {};
 
   const [results, setResults] = useState(characters);
@@ -37,11 +56,11 @@ const Characters = ({ data }) => {
   }, [data]);
 
   useEffect(() => {
-    let result = characters;
+    let result: any = characters;
 
     if (searchPhrase) {
       result = characters.filter(
-        (character: { name: String }) =>
+        (character) =>
           character.name.toLowerCase().indexOf(searchPhrase.toLowerCase()) >= 0
       );
     }
@@ -75,7 +94,7 @@ const Characters = ({ data }) => {
 };
 
 export const getStaticPaths = async () => {
-  const data = await fetchGraphQLData(TOTAL_COUNT);
+  const data: TotalCountTypes = await fetchGraphQLData(TOTAL_COUNT);
 
   const numberOfAllCharacters = data?.allCharacters?.totalCount || 1;
 
@@ -90,12 +109,12 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params.id;
-  const data = await fetchGraphQLData(ALL_CHARACTERS);
+  const data: AllCharactersType = await fetchGraphQLData(ALL_CHARACTERS);
 
   const allPagesData = chunk(data.allCharacters?.people, itemsPerPage);
-  const charactersForPage = allPagesData?.[id - 1] || [];
+  const charactersForPage = allPagesData?.[+id - 1] || [];
 
   const planetFilter = [
     ...new Set(charactersForPage?.map(({ homeworld }) => homeworld.name)),

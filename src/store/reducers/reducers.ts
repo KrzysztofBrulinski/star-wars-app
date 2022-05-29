@@ -1,36 +1,56 @@
+export type StateTypes = {
+  wishlist: { id: string; name: string }[];
+  galaxyBackgroundImage: string;
+  alerts: { text: string; color?: string; id: number }[];
+};
+
+type ActionTypes = {
+  type: string;
+  value:
+    | string
+    | { id: string; name: string }
+    | { text: string; color?: string; id: number };
+};
+
+const actions = {
+  addToWishlist: "ADD_TO_WISHLIST",
+  removeFromWishlist: "REMOVE_FROM_WISHLIST",
+  setGalaxyBackground: "SET_GALAXY_BACKGROUND",
+  setAlert: "SET_ALERT",
+  clearAlerts: "CLEAR_ALERTS",
+};
+
 export const rootReducer = (
-  state = { wishlist: {}, galaxyBackgroundImage: "", alerts: [] },
-  action
+  state: StateTypes = { wishlist: [], galaxyBackgroundImage: "", alerts: [] },
+  action: ActionTypes
 ) => {
-  if (action.type === "ADD_TO_WISHLIST") {
-    return {
-      ...state,
-      wishlist: { ...state.wishlist, ...action.value },
-    };
-  }
+  switch (action.type) {
+    case actions.addToWishlist:
+      return {
+        ...state,
+        wishlist: [...state.wishlist, action.value],
+      };
 
-  if (action.type === "REMOVE_FROM_WISHLIST") {
-    const wishlist = { ...state.wishlist };
-    delete wishlist[action.id];
-    return {
-      ...state,
-      wishlist,
-    };
-  }
+    case actions.removeFromWishlist:
+      const wishlist = state.wishlist.filter((el) => el.id !== action.value);
+      return {
+        ...state,
+        wishlist,
+      };
 
-  if (action.type === "SET_GALAXY_BACKGROUND") {
-    return { ...state, galaxyBackgroundImage: action.value };
-  }
+    case actions.setGalaxyBackground:
+      return { ...state, galaxyBackgroundImage: action.value };
 
-  if (action.type === "SET_ALERT") {
-    return { ...state, alerts: [...state.alerts, action.value] };
-  }
+    case actions.setAlert:
+      return { ...state, alerts: [...state.alerts, action.value] };
 
-  if (action.type === "CLEAR_ALERTS") {
-    return {
-      ...state,
-      alerts: [],
-    };
+    case actions.clearAlerts:
+      return {
+        ...state,
+        alerts: [],
+      };
+
+    default:
+      return state;
   }
-  return state;
 };

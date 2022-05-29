@@ -1,7 +1,12 @@
 import { Input } from "src/components/atoms/Input/Input";
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const Wrapper = styled.div<Props>`
   background-color: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.black};
   padding: 30px 20px;
@@ -13,7 +18,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Filter = styled.div`
+export const Filter = styled.div<Props>`
   margin-top: 38px;
   margin-bottom: 20px;
   font-size: ${({ theme }) => theme.fontSize.l};
@@ -28,7 +33,7 @@ export const Filter = styled.div`
   }
 `;
 
-export const Option = styled.div`
+export const Option = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: flex-start;

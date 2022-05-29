@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Input = styled.input`
+type Props = {
+  readonly theme: ThemeTypes;
+  readonly isError?: boolean;
+};
+
+export const Input = styled.input<Props>`
   padding: 5px 8px;
   border: 5px solid
     ${({ theme, isError }) =>

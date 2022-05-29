@@ -1,8 +1,14 @@
 import { Wrapper, Filter, Option } from "./Filters.style";
 import { Input } from "src/components/atoms/Input/Input";
 import { Button } from "src/components/atoms/Button/Button";
+import { ChangeEvent, Dispatch } from "react";
 
-const Filters = ({ filter, setFilter }) => {
+type Props = {
+  filter: { planetName: string; isChecked: boolean }[];
+  setFilter: Dispatch<{ planetName: string; isChecked: boolean }[]>;
+};
+
+const Filters = ({ filter, setFilter }: Props) => {
   return (
     <Wrapper>
       <h2>FILTERS</h2>
@@ -15,15 +21,15 @@ const Filters = ({ filter, setFilter }) => {
               type="checkbox"
               id={planetName}
               checked={isChecked}
-              onChange={(e) => {
-                const filterCopy = [...filter];
-                const appliedFilter = filterCopy.find(
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                const updatedFilters = [...filter];
+                const appliedFilter = updatedFilters.find(
                   (planet) => planet.planetName === planetName
                 );
 
                 if (appliedFilter) {
                   appliedFilter.isChecked = e.target.checked;
-                  setFilter(filterCopy);
+                  setFilter(updatedFilters);
                 }
               }}
             />

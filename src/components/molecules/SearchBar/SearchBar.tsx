@@ -1,7 +1,10 @@
 import { Wrapper } from "./SearchBar.style";
 import { Input } from "src/components/atoms/Input/Input";
+import { ChangeEvent, Dispatch } from "react";
 
-const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
+type Props = { searchPhrase: string; setSearchPhrase: Dispatch<string> };
+
+const SearchBar = ({ searchPhrase, setSearchPhrase }: Props) => {
   return (
     <Wrapper>
       <Input
@@ -10,10 +13,10 @@ const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
         type="text"
         placeholder={"Find a character"}
         value={searchPhrase}
-        onChange={(e) => {
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
           setSearchPhrase(e.target.value);
         }}
-      ></Input>
+      />
     </Wrapper>
   );
 };

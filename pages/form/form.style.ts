@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import { CharacterWrapper } from "src/assets/styles/GlobalStyledComponent/CharacterWrapper.style";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.section`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const Wrapper = styled.section<Props>`
   max-width: 600px;
   width: 100%;
+
   ${CharacterWrapper} {
     height: auto;
     padding: 50px;
@@ -25,7 +31,7 @@ export const Wrapper = styled.section`
   }
 `;
 
-export const Error = styled.p`
+export const Error = styled.p<Props>`
   font-size: ${({ theme }) => theme.fontSize.l};
   font-weight: bold;
   color: ${({ theme }) => theme.colors.darkRed};

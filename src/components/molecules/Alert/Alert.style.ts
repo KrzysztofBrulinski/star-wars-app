@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+  readonly color?: string;
+};
+
+export const Wrapper = styled.div<Props>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,7 +16,7 @@ export const Wrapper = styled.div`
   z-index: 3;
 `;
 
-export const AlertWrapper = styled.section`
+export const AlertWrapper = styled.section<Props>`
   width: 100%;
   height: 50px;
   display: flex;
@@ -29,7 +35,7 @@ export const AlertWrapper = styled.section`
   }
 `;
 
-export const AlertText = styled.section`
+export const AlertText = styled.section<Props>`
   color: ${({ theme }) => theme.colors.white};
   font-weight: bold;
   display: flex;

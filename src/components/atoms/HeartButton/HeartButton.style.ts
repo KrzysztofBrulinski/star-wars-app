@@ -1,6 +1,13 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const StyledHeartButton = styled.button`
+type Props = {
+  readonly theme: ThemeTypes;
+  readonly isSmall?: boolean;
+  readonly isActive?: boolean;
+};
+
+export const StyledHeartButton = styled.button<Props>`
   position: relative;
   width: 160px;
   height: 130px;

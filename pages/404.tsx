@@ -1,8 +1,13 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Head from "next/head";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-const Wrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+const Wrapper = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: center;

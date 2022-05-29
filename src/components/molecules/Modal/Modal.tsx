@@ -6,8 +6,16 @@ import {
   Content,
 } from "./Modal.style";
 import { Button } from "src/components/atoms/Button/Button";
+import { Dispatch, ReactNode } from "react";
 
-const Modal = ({ headerText, showModal, setShowModal, children }) => {
+type Props = {
+  headerText: string;
+  showModal: boolean;
+  setShowModal: Dispatch<boolean>;
+  children: ReactNode;
+};
+
+const Modal = ({ headerText, showModal, setShowModal, children }: Props) => {
   return (
     <>
       {showModal ? (

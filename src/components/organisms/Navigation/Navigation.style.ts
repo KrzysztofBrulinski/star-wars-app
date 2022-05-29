@@ -1,11 +1,16 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Header = styled.header`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const Header = styled.header<Props>`
   display: flex;
   width: 100%;
 `;
 
-export const Nav = styled.nav`
+export const Nav = styled.nav<Props>`
   width: 100%;
   height: 60px;
   display: flex;
@@ -14,7 +19,7 @@ export const Nav = styled.nav`
   margin: 50px 0;
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled.a<Props>`
   width: 30%;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.yellow};

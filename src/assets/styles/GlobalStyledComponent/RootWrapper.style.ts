@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const RootWrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const RootWrapper = styled.div<Props>`
   display: flex;
   justify-content: flex-start;
   align-items: center;

@@ -7,14 +7,33 @@ import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButt
 import { fetchGraphQLData } from "src/apollo/utils";
 import { PLANET_DATA, CHARACTER, ALL_CHARACTERS_ID } from "src/GraphQL/queries";
 import { CharacterWrapper } from "src/assets/styles/GlobalStyledComponent/CharacterWrapper.style";
+import { StateTypes } from "src/store/reducers/reducers";
+import { GetStaticProps } from "next";
+import {
+  CharacterType,
+  AllCharacterTypeID,
+  PlanetDataType,
+} from "src/GraphQL/queries.types";
 
-const Character = ({ data }) => {
+const initialModalState = {
+  name: "",
+  population: "",
+  terrains: [],
+  climates: [],
+  diameter: 0,
+  surfaceWater: 0,
+  gravity: "",
+};
+
+type Props = { data: CharacterType };
+
+const Character = ({ data }: Props) => {
   const [showModal, setShowModal] = useState(false);
-  const [modalData, setModalData] = useState({});
+  const [modalData, setModalData] = useState(initialModalState);
   const { name, id, birthYear, height, mass, eyeColor, hairColor, gender } =
     data?.person || {};
   const error = data.error;
-  const wishlist = useSelector((state) => state.wishlist);
+  const wishlist = useSelector((state: StateTypes) => state.wishlist);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,12 +49,12 @@ const Character = ({ data }) => {
     }
   }, []);
 
-  const isInWishlist = !!wishlist[id];
+  const isInWishlist = !!wishlist.find((el) => el.id === id);
   const action = isInWishlist
-    ? { type: "REMOVE_FROM_WISHLIST", id }
+    ? { type: "REMOVE_FROM_WISHLIST", value: id }
     : {
         type: "ADD_TO_WISHLIST",
-        value: { [id]: { name, id } },
+        value: { name, id },
       };
 
   const characterDataSchema = [
@@ -65,15 +84,13 @@ const Character = ({ data }) => {
         showModal={showModal}
         setShowModal={setShowModal}
       >
-        {!!Object.keys(modalData)?.length ? (
-          <StyledList>
-            {planetsDataSchema.map(({ name, value }) => (
-              <li key={name}>
-                {name}: <b>{value}</b>
-              </li>
-            ))}
-          </StyledList>
-        ) : null}
+        <StyledList>
+          {planetsDataSchema.map(({ name, value }) => (
+            <li key={name}>
+              {name}: <b>{value}</b>
+            </li>
+          ))}
+        </StyledList>
       </Modal>
 
       <CharacterWrapper>
@@ -96,7 +113,9 @@ const Character = ({ data }) => {
         <Button
           onClick={async () => {
             setShowModal(true);
-            const data = await fetchGraphQLData(PLANET_DATA, { id });
+            const data: PlanetDataType = await fetchGraphQLData(PLANET_DATA, {
+              id,
+            });
             if (data.error) {
               dispatch({
                 type: "SET_ALERT",
@@ -108,7 +127,7 @@ const Character = ({ data }) => {
               });
             }
 
-            setModalData(data?.person?.homeworld || {});
+            setModalData(data?.person?.homeworld || initialModalState);
           }}
         >
           About planet
@@ -119,9 +138,10 @@ const Character = ({ data }) => {
 };
 
 export const getStaticPaths = async () => {
-  const data = await fetchGraphQLData(ALL_CHARACTERS_ID);
+  const data: AllCharacterTypeID = await fetchGraphQLData(ALL_CHARACTERS_ID);
+
   const paths =
-    data.allCharacters?.people?.map(({ id }) => ({
+    data?.allCharacters?.people?.map(({ id }) => ({
       params: { id },
     })) || [];
 
@@ -131,9 +151,9 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params.id;
-  const data = await fetchGraphQLData(CHARACTER, { id });
+  const data: CharacterType = await fetchGraphQLData(CHARACTER, { id });
 
   return { props: { data } };
 };

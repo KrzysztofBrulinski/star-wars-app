@@ -4,16 +4,23 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { StyledHeartButton as HeartButton } from "src/components/atoms/HeartButton/HeartButton.style";
 
-const CharactersListItem = ({ id, name, homeworld, wishlist }) => {
+type Props = {
+  id: string;
+  name: string;
+  homeworld: { name: string };
+  wishlist: { name: string; id: string }[];
+};
+
+const CharactersListItem = ({ id, name, homeworld, wishlist }: Props) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const isInWishlist = !!wishlist[id];
+  const isInWishlist = !!wishlist.find((el) => el.id === id);
   const action = isInWishlist
-    ? { type: "REMOVE_FROM_WISHLIST", id }
+    ? { type: "REMOVE_FROM_WISHLIST", value: id }
     : {
         type: "ADD_TO_WISHLIST",
-        value: { [id]: { name, id } },
+        value: { name, id },
       };
 
   return (

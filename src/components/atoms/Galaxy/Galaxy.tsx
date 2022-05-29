@@ -1,5 +1,5 @@
 import { GalaxyWrapper } from "./Galaxy.style";
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { theme } from "src/assets/styles/theme";
 import {
   generateSmallStars,
@@ -7,12 +7,15 @@ import {
   setBodyBackgroundImage,
 } from "./Galaxy.utils";
 import { useDispatch, useSelector } from "react-redux";
+import { StateTypes } from "src/store/reducers/reducers";
 
-const Galaxy = ({ children }) => {
+type Props = { children: ReactNode };
+
+const Galaxy = ({ children }: Props) => {
   const canvas = useRef(null);
   const dispatch = useDispatch();
   let galaxyBackgroundImage = useSelector(
-    (state) => state.galaxyBackgroundImage
+    (state: StateTypes) => state.galaxyBackgroundImage
   );
 
   useEffect(() => {
@@ -23,7 +26,8 @@ const Galaxy = ({ children }) => {
       canvas.current.setAttribute("width", windowWidth);
       canvas.current.setAttribute("height", windowHeight);
 
-      const canvasCtx = canvas.current.getContext("2d");
+      const canvasCtx: CanvasRenderingContext2D =
+        canvas.current.getContext("2d");
 
       canvasCtx.fillStyle = theme.colors.black;
       canvasCtx.fillRect(0, 0, windowWidth, windowHeight);

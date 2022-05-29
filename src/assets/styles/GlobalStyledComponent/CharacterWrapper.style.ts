@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const CharacterWrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+  readonly as?: string;
+};
+
+export const CharacterWrapper = styled.div<Props>`
   width: 100%;
   height: 240px;
   background-color: ${({ theme }) => theme.colors.yellow};

@@ -1,6 +1,17 @@
 import { theme } from "src/assets/styles/theme";
 
-const generateRandomValues = (windowWidth, windowHeight) => {
+type generateRandomValuesTypes = {
+  left: number;
+  top: number;
+  color1: number;
+  color2: number;
+  opacity: number;
+};
+
+const generateRandomValues = (
+  windowWidth: number,
+  windowHeight: number
+): generateRandomValuesTypes => {
   const left = Math.floor(Math.random() * windowWidth) + 1;
   const top = Math.floor(Math.random() * windowHeight) + 1;
   const color1 = Math.floor(Math.random() * 106) + 150;
@@ -11,11 +22,11 @@ const generateRandomValues = (windowWidth, windowHeight) => {
 };
 
 export const generateSmallStars = (
-  starNumber,
-  starSize,
-  ctx,
-  windowWidth,
-  windowHeight
+  starNumber: number,
+  starSize: number,
+  ctx: CanvasRenderingContext2D,
+  windowWidth: number,
+  windowHeight: number
 ) => {
   for (let i = 0; i < starNumber; i++) {
     const { left, top, color1, color2, opacity } = generateRandomValues(
@@ -31,11 +42,11 @@ export const generateSmallStars = (
 };
 
 export const generateBigStars = (
-  starNumber,
-  starSize,
-  ctx,
-  windowWidth,
-  windowHeight
+  starNumber: number,
+  starSize: number,
+  ctx: CanvasRenderingContext2D,
+  windowWidth: number,
+  windowHeight: number
 ) => {
   for (let i = 0; i < starNumber; i++) {
     const { left, top, color1, color2, opacity } = generateRandomValues(
@@ -55,6 +66,6 @@ export const generateBigStars = (
   }
 };
 
-export const setBodyBackgroundImage = (img) => {
+export const setBodyBackgroundImage = (img: string): void => {
   document.body.style.background = `url(${img})`;
 };

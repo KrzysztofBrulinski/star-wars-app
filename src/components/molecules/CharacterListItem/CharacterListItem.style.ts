@@ -1,7 +1,12 @@
 import { StyledHeartButton } from "src/components/atoms/HeartButton/HeartButton.style";
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const Wrapper = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-items: center;

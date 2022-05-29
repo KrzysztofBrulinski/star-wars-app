@@ -1,7 +1,12 @@
 import { Button } from "src/components/atoms/Button/Button";
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const Wrapper = styled.div<Props>`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -18,7 +23,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const StyledParagraph = styled.p`
+export const StyledParagraph = styled.p<Props>`
   cursor: default;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.black};

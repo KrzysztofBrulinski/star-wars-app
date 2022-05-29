@@ -1,4 +1,34 @@
-export const theme = {
+export type ThemeTypes = {
+  colors: {
+    white: string;
+    grey: string;
+    darkGrey: string;
+    lightGrey: string;
+    black: string;
+    lightPurple: string;
+    darkPurple: string;
+    yellow: string;
+    lightYellow: string;
+    red: string;
+    darkRed: string;
+    green: string;
+  };
+  fontSize: {
+    xxl: string;
+    xl: string;
+    l: string;
+    m: string;
+    s: string;
+  };
+  standardTransition: string;
+  grid: {
+    templateColumns: string;
+    gap: string;
+  };
+  borderRadius: string;
+};
+
+export const theme: ThemeTypes = {
   colors: {
     white: "#FFFFFF",
     grey: "#C0C7D6",

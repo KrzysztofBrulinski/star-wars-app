@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   img {
     width: 400px;
     height: auto;
-    margin-top: 100px;
   }
 `;
 

@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper, AlertWrapper, AlertText } from "./Alert.style";
+import { StateTypes } from "src/store/reducers/reducers";
 
 const Alert = () => {
-  const alerts = useSelector((state) => state.alerts);
+  const alerts = useSelector((state: StateTypes) => state.alerts);
   const dispatch = useDispatch();
+  const alertTime = 3000;
 
   useEffect(() => {
     if (!!alerts.length) {
       setTimeout(() => {
         dispatch({ type: "CLEAR_ALERTS" });
-      }, 3000);
+      }, alertTime);
     }
   }, [alerts]);
   return (

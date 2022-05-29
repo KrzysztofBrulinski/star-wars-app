@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const GalaxyWrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+};
+
+export const GalaxyWrapper = styled.div<Props>`
   width: 100%;
   height: 100%;
   display: flex;

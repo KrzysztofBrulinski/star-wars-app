@@ -1,8 +1,14 @@
 import { Input } from "src/components/atoms/Input/Input";
 import { Label } from "src/components/atoms/Label/Label.style";
 import styled from "styled-components";
+import { ThemeTypes } from "src/assets/styles/theme";
 
-export const Wrapper = styled.div`
+type Props = {
+  readonly theme: ThemeTypes;
+  readonly isError?: boolean;
+};
+
+export const Wrapper = styled.div<Props>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -22,7 +28,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Error = styled.p`
+export const Error = styled.p<Props>`
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: bold;
   color: ${({ theme }) => theme.colors.darkRed};
